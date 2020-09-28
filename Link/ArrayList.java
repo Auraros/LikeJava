@@ -5,8 +5,8 @@ package src.Link;
 public class ArrayList<AnyType> {
 
 
-    //声明一个Object类型的数组
-    private Object[] elementDate;
+    //声明一个Object类型的数组,默认长度为10
+    private AnyType[] elementArray;
 
     //声明一个数组内元素个数
     private int size;
@@ -17,93 +17,98 @@ public class ArrayList<AnyType> {
 
     //定义一个无参构造函数,初始化数组内个数
     public ArrayList(){
-        this(10);//调用另一个构造方法(有参构造方法)，所以，必须有一个有参构造方法
+        this(10); //调用另一个构造方法(有参构造方法)，所以，必须有一个有参构造方法
     }
 
-    public ArrayList(int initialCapacity) {//有参构造方法，实现数组容量的初始化
-        if(initialCapacity<0) {
-            try {
+    public ArrayList(int initialCapacity) {  //有参构造方法，实现数组容量的初始化，默认长度为10
+        if (initialCapacity < 0){
+            try{
                 throw new Exception();
-            }catch(Exception e){
+            }catch (Exception e){
                 e.printStackTrace();
             }
         }
-        elementDate=new Object[initialCapacity];//初始化，容量为10    与前面的数组声明对应
+        elementArray = (AnyType[]) new Object[initialCapacity];  //初始化10个
     }
-    //重点***********
-    public void add(Object obj) {
-        //首先，判断数组是否装满，是则扩容
-        elementDate[size++]=obj;
-        if(size==elementDate.length) {
-            //创建一个新数组
-            Object[] newArray=new Object[2*size+1];
-            //将老数组拷贝到新数组内
-            System.arraycopy(elementDate, 0, newArray, 0, elementDate.length);
-            //再将新数组赋值给老数组
-            elementDate=newArray;
-        }
+
+
+    public boolean add(AnyType x) {
+        add(size(), x);
+        return true;
     }
 
     //get方法，得到数组实质就是一个数组的索引操作
-    public Object get(int index) {
-        //检查下标是否越界
-        rangCheck(index);
-        return elementDate[index];
-
-    }
-
-    public void remove(int index){
-        rangCheck(index);
-
-        //删除指定位置对象，删除某位置，相当于 将后往前挪:
-        int numMoved = size-index-1;
-        if(numMoved>0){
-            System.arraycopy(elementDate, index+1, elementDate, index, numMoved);
+    public AnyType get(int index) {
+        if(index < 0 || index >= size()){
+            throw new ArrayIndexOutOfBoundsException();
         }
+        return elementArray[index];
     }
-    public void remove(Object obj){
-        for(int i=0;i<size;i++){
-            if(get(i).equals(obj)){   //注意底层调用的equals方法而不是==。
-                remove(i);
+
+    public AnyType remove(int index){
+        AnyType removeValue = elementArray[index];
+        for(int i=index; i > size()-1; i++){
+            elementArray[i] = elementArray[i+1];
+        }
+        size--;
+        return removeValue;
+    }
+
+    public int contains(AnyType x){
+        for (int i=0; i<size(); i++){
+            if(elementArray[i] == x){
+                System.out.println(x+"存在");
+                return i;
             }
         }
+        return -1;
     }
 
-    private void rangCheck(int index) {
-        if(index<0||index>size) {
-            try {
-                throw new Exception();
-            }catch(Exception e) {
-                e.printStackTrace();
-            }
+
+
+    public void remove(AnyType x){
+        int index = contains(x);
+        remove(index);
+    }
+
+
+    public void add(int index,AnyType x) {
+        if(elementArray.length == size()){
+            ensureCapacity(size()*2+1);
         }
+        for(int i = size(); i>index; i--){
+            elementArray[i] = elementArray[i-1];
+        }
+        elementArray[index] = x;
 
-    }
-
-    public void add(int index,Object obj) {
-        rangCheck(index);
-        ensureCapacity();//扩容
-        System.arraycopy(elementDate,index,elementDate, index+1, size-index);
-        elementDate[index]=obj;
         size++;
     }
 
-    private void ensureCapacity() {
-        if(size==elementDate.length) {
-            Object[] newarray=new Object[size*2+1];
-            System.arraycopy(elementDate, 0, newarray, 0, elementDate.length);
-            elementDate=newarray;
+    private void ensureCapacity(int newCapCity) {
+        if(newCapCity < size){
+            return;
         }
-
+        AnyType[] old = elementArray;
+        elementArray = (AnyType[])new Object[newCapCity];
+        for(int i=0; i<size(); i++){
+            elementArray[i] = old[i];
+        }
     }
 
     public static void main(String[] args) {
         ArrayList list=new ArrayList();
-        list.add("温暖");
-        list.add("依然");
-        list.add("wk");
-        list.add("wk1");
-        list.add("wk2");
+        list.add("a");
+        list.add("b");
+        list.add(123);
+        list.add("c");
+        list.add("d");
+
+        list.contains("a");
+
+        list.remove(2);
+        list.remove("a");
+        list.get(2);
+
         System.out.println("list内拥有："+list.size()+"个元素");
     }
 }
