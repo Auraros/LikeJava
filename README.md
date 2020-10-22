@@ -1,3 +1,3 @@
 # LikeDataStructure
 
-![Alt text](https://github.com/Auraros/LikeDataStructure/思维图.jpg)
+![Alt text](https://github.com/Auraros/LikeDataStructure/raw/master/思维图.jpg)
