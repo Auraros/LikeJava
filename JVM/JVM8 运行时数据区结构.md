@@ -16,7 +16,9 @@ Java虚拟机有一些会随着虚拟机地启动而创建，随着虚拟机推�
 
 ![image-20201202221236034](C:\Users\Auraros\AppData\Roaming\Typora\typora-user-images\image-20201202221236034.png)
 
-灰色为单独线程私有的，红色的为多个线程共享的：
+灰色为单独线程私有的，红色的为多个线程共享(一个进程一份)的：
 
 - 每个线程： 独立包括程序计算器、栈、本地栈
 - 线程间共享：堆、堆外内存（永久代或元空间、代码缓存）
+
+![image-20201210232701043](C:\Users\Auraros\AppData\Roaming\Typora\typora-user-images\image-20201210232701043.png)
