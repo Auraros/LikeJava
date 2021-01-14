@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.openjdk.jol:jol-core:0.10-TEST">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjdk/jol/jol-core/0.10-TEST/jol-core-0.10-TEST.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjdk/jol/jol-core/0.10-TEST/jol-core-0.10-TEST-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjdk/jol/jol-core/0.10-TEST/jol-core-0.10-TEST-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+dontinline,com/itcast/MyBenchmark.c_avgt_jmhLoop
+dontinline,com/itcast/MyBenchmark.c_sample_jmhLoop
+dontinline,com/itcast/MyBenchmark.c_ss_jmhStub
+dontinline,com/itcast/MyBenchmark.c_thrpt_jmhLoop
+dontinline,com/itcast/MyBenchmark.d_avgt_jmhLoop
+dontinline,com/itcast/MyBenchmark.d_sample_jmhLoop
+dontinline,com/itcast/MyBenchmark.d_ss_jmhStub
+dontinline,com/itcast/MyBenchmark.d_thrpt_jmhLoop
+inline,com/itcast/MyBenchmark.c
+inline,com/itcast/MyBenchmark.d
+inline,org/openjdk/jmh/infra/Blackhole.clearSinks
